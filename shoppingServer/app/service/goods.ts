@@ -26,6 +26,7 @@ export class GoodsService extends Service {
             const infoField = {
                 goodid: new Date().getTime(),
                 goodimg: data.goodimg,
+                title: data.title,
                 pic: data.pic,
                 price: data.price,
                 total: data.total,
@@ -36,9 +37,11 @@ export class GoodsService extends Service {
                 expirydate: data.expirydate,
                 classification: data.classification
             };
+            console.log(infoField);
             try{
             let info = new model.Goods(infoField);
             info = await info.save();
+            console.log(info);
             if (info) {
                 return reply.success(info);
             }
@@ -47,7 +50,6 @@ export class GoodsService extends Service {
                 console.log(err);
             }
         } catch (err) {
-            console.log(err)
             return reply.err(errorcode.goods.create, this.ctx.__("t3"));
         }
     }

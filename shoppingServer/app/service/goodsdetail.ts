@@ -25,17 +25,18 @@ export class GoodsDetailService extends Service {
         try {
             const model = this.ctx.model;
             const infoField = {
-                orderid: data.orderid,
+                goodid: data.goodsid,
                 timelimit: data.timelimit,
                 money: data.money,
                 cardid: data.cardid,
-                pwd: data.pwd,
-                classification: data.classification,
-                state: data.state
+                classification:data.classification,
+                pwd: data.pwd
             };
+            
             try {
                 let info = new model.Goodsdetail(infoField);
                 info = await info.save();
+                console.log(info);
                 if (info) {
                     return reply.success(info);
                 }

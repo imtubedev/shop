@@ -1,4 +1,4 @@
-# fengli-imTServer-async
+# fastsalt-shop-async
 
 [imTServer News](https://127.0.0.1/) showcase using async/await for egg
 

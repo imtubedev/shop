@@ -26,14 +26,15 @@ export default class GoodsController extends BaseController {
   }
   //新增商品
   async create() {
-     console.log('12345678')
-     const authorization = this.ctx.get('Authorization');
-     const isexit = await this.isAllow(authcode.goods.create, authorization);
-     if (isexit) {
+    //  console.log('12345678')
+    //  const authorization = this.ctx.get('Authorization');
+    //  const isexit = await this.isAllow(authcode.goods.create, authorization);
+    //  if (isexit) {
       try {
         const Joi = this.app.Joi;
         this.ctx.validate(Joi.object().keys({
           goodimg:Joi.string().required(),
+          title:Joi.string().required(),
           pic: Joi.array().required(),
           price: Joi.number().required(),
           total:Joi.number().required(),
@@ -49,9 +50,9 @@ export default class GoodsController extends BaseController {
         console.log(err);
         this.ctx.body = this.ctx.__("t6");
       }
-     } else {
-       this.ctx.body = this.ctx.__("t7");
-     }
+    //  } else {
+    //    this.ctx.body = this.ctx.__("t7");
+    //  }
   }
   //修改商品信息
   async update() {
@@ -62,6 +63,7 @@ export default class GoodsController extends BaseController {
         const Joi = this.app.Joi;
         this.ctx.validate(Joi.object().keys({
           goodimg:Joi.string().required(),
+          title:Joi.string().required(),
           pic: Joi.array().required(),
           price: Joi.number().required(),
           total:Joi.number().required(),

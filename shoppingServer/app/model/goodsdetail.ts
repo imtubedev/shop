@@ -5,15 +5,15 @@ import * as QueryPlugin from 'mongoose-query';
 
 const Schema = mongoose.Schema;
 
-//订单明细列表
+//商品明细列表
 export const goodsDetailSchema = new Schema({
-    orderid: {type: String, required: true}, //订单号
+    goodid: {type: String, required: true}, //订单号
     timelimit: {type: String, required: true}, //有效期
     money: {type: String, required: true}, //金额
     cardid: {type: String, required: true}, //卡号
     pwd: {type: String, required: true}, //密码
     classification: {type: String, required: true}, //卡类型
-    state: {type: Number, required: true}, //卡状态
+    state: {type: Number,default:0}, //卡状态
 }, {timestamps: true});
 
 goodsDetailSchema.plugin(QueryPlugin);

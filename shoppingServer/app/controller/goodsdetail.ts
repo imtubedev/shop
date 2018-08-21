@@ -1,11 +1,11 @@
 import BaseController from './basecontroller';
-import authcode from '../const/authcode';
+//import authcode from '../const/authcode';
 export default class GoodsdetailController extends BaseController {
     //查询商品明细列表
     async index() {
-        const authorization = this.ctx.get('Authorization');
-        const isexit = await this.isAllow(authcode.goodsdetail.index, authorization);
-        if (isexit) {
+        // const authorization = this.ctx.get('Authorization');
+        // const isexit = await this.isAllow(authcode.goodsdetail.index, authorization);
+        // if (isexit) {
             try {
                 let data = this.ctx.request.query;
                 if (data.page) {
@@ -21,10 +21,10 @@ export default class GoodsdetailController extends BaseController {
             catch (err) {
                 this.ctx.body = this.ctx.__("t6");
             }
-        }
-        else {
-            this.ctx.body = this.ctx.__("t7");
-        }
+        //}
+        // else {
+        //     this.ctx.body = this.ctx.__("t7");
+        // }
     }
     //新增商品明细
     async create() {
@@ -34,13 +34,12 @@ export default class GoodsdetailController extends BaseController {
         try {
             const Joi = this.app.Joi;
             this.ctx.validate(Joi.object().keys({
-                orderid: Joi.string().required(),
-                timelimit: Joi.string().required(),
-                money: Joi.string().required(),
+                goodsid: Joi.string().required(),
+                timelimit: Joi.number().required(),
+                money: Joi.number().required(),
                 cardid: Joi.string().required(),
-                pwd: Joi.string().required(),
                 classification: Joi.string().required(),
-                state: Joi.number().required()
+                pwd: Joi.string().required()
             }), this.ctx.request.body);
             await super.create('goodsdetail');
         }
@@ -61,9 +60,7 @@ export default class GoodsdetailController extends BaseController {
             this.ctx.validate(Joi.object().keys({
                 timelimit: Joi.string().required(),
                 money: Joi.string().required(),
-                pwd: Joi.string().required(),
-                classification: Joi.string().required(),
-                state: Joi.number().required()
+                pwd: Joi.string().required()
             }), this.ctx.request.body);
             await super.update('goodsdetail');
         }
